@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.coffe.kz/temple.xsd"
+           xmlns="http://www.coffe.kz/temple.xsd"
+           elementFormDefault="qualified">
+    <xs:element name="cofeeList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="coffee" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="coffeetype">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:short" name="sort"/>
+                                        <xs:element type="xs:string" name="type"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="coffeevalue">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:short" name="price"/>
+                                        <xs:element type="xs:short" name="weight"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="coffeekind" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

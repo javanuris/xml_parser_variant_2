@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cofeeList xmlns="http://www.coffe.kz/temple.xsd">
+    <coffee coffeekind="arabica">
+    <coffeetype>
+        <sort>1</sort>
+        <type>BIN</type>
+    </coffeetype>
+    <coffeevalue>
+        <price>500</price>
+        <weight>200</weight>
+    </coffeevalue>
+</coffee>
+
+    <coffee coffeekind="dewevrei">
+        <coffeetype>
+            <sort>2</sort>
+            <type>PACK</type>
+        </coffeetype>
+        <coffeevalue>
+            <price>100</price>
+            <weight>100</weight>
+        </coffeevalue>
+    </coffee>
+
+    <coffee coffeekind="arabica">
+        <coffeetype>
+            <sort>1</sort>
+            <type>BIN</type>
+        </coffeetype>
+        <coffeevalue>
+            <price>500</price>
+            <weight>200</weight>
+        </coffeevalue>
+    </coffee>
+    <coffee coffeekind="liberica">
+        <coffeetype>
+            <sort>2</sort>
+            <type>PACK</type>
+        </coffeetype>
+        <coffeevalue>
+            <price>100</price>
+            <weight>100</weight>
+        </coffeevalue>
+    </coffee>
+
+    <coffee coffeekind="dewevrei">
+        <coffeetype>
+            <sort>1</sort>
+            <type>PACK</type>
+        </coffeetype>
+        <coffeevalue>
+            <price>100</price>
+            <weight>170</weight>
+        </coffeevalue>
+    </coffee>
+    <coffee coffeekind="canephore">
+        <coffeetype>
+            <sort>1</sort>
+            <type>PACK</type>
+        </coffeetype>
+        <coffeevalue>
+            <price>100</price>
+            <weight>170</weight>
+        </coffeevalue>
+    </coffee>
+</cofeeList>
