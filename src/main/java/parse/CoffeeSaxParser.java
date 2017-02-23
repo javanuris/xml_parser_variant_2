@@ -1,7 +1,6 @@
 package parse;
 
-import entity.AbstractCoffe;
-import entity.ArabicaCoffee;
+import entity.*;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -18,16 +17,28 @@ import java.util.ArrayList;
 public class CoffeeSaxParser extends DefaultHandler {
 
     private static ArrayList<AbstractCoffe> coffeeList = new ArrayList<>();
-    private ArabicaCoffee arabicaCoffee;
+    private AbstractCoffe arabicaCoffee;
     private StringBuilder dataBuffer;
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         switch (qName) {
             case "coffee":
-                arabicaCoffee = new ArabicaCoffee();
+                switch (attributes.getValue(0).toString()) {
+                    case "arabica":
+                        arabicaCoffee = new ArabicaCoffee();
+                        break;
+                    case "dewevrei":
+                        arabicaCoffee = new DewevreiCoffe();
+                        break;
+                    case "liberica":
+                        arabicaCoffee = new LibericaCoffe();
+                        break;
+                    case "canephore":
+                        arabicaCoffee = new CanephoraCoffe();
+                        break;
+                }
                 break;
-
         }
     }
 
@@ -57,15 +68,12 @@ public class CoffeeSaxParser extends DefaultHandler {
                 coffeeList.add(arabicaCoffee);
                 break;
         }
-
     }
 
     public ArrayList<AbstractCoffe> parseCoffee() {
-
         if (!CoffeeParser.validateXML()) {
             throw new RuntimeException("Some problem with XML file");
         }
-
         String path = "src/main/resources/coffee.xml";
 
         SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -82,6 +90,4 @@ public class CoffeeSaxParser extends DefaultHandler {
         }
         return coffeeList;
     }
-
-
 }
