@@ -24,16 +24,13 @@ public class CoffeeDomParser extends CoffeeParser {
             throw new RuntimeException("Some problem with XML");
         }
         ArrayList<AbstractCoffe> coffeList = new ArrayList<>();
-
         Document coffeeDocument = getCoffeDocument();
-
         NodeList nodeList = coffeeDocument.getElementsByTagName("coffee");
         for (int pos = 0; pos < nodeList.getLength(); pos++) {
             Node current = nodeList.item(pos);
             coffeList.add(parseElement((Element) current));
         }
         return coffeList;
-
     }
 
     private Document getCoffeDocument() {
@@ -53,24 +50,24 @@ public class CoffeeDomParser extends CoffeeParser {
     }
 
     private AbstractCoffe parseElement(Element element) {
-        AbstractCoffe abstr;
+        AbstractCoffe abstractCoffe;
         switch (element.getAttribute("coffeekind")) {
             case "arabica":
-                abstr = new ArabicaCoffee();
-                getElements(element, abstr);
-                return abstr;
+                abstractCoffe = new ArabicaCoffee();
+                getElements(element, abstractCoffe);
+                return abstractCoffe;
             case "dewevrei":
-                abstr = new DewevreiCoffe();
-                getElements(element, abstr);
-                return abstr;
+                abstractCoffe = new DewevreiCoffe();
+                getElements(element, abstractCoffe);
+                return abstractCoffe;
             case "liberica":
-                abstr = new CanephoraCoffe();
-                getElements(element, abstr);
-                return abstr;
+                abstractCoffe = new LibericaCoffe();
+                getElements(element, abstractCoffe);
+                return abstractCoffe;
             case "canephore":
-                abstr = new CanephoraCoffe();
-                getElements(element, abstr);
-                return abstr;
+                abstractCoffe = new CanephoraCoffe();
+                getElements(element, abstractCoffe);
+                return abstractCoffe;
         }
         return null;
     }

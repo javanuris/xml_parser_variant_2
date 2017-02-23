@@ -29,17 +29,7 @@
         </coffeetype>
         <coffeevalue>
             <price>500</price>
-            <weight>200</weight>
-        </coffeevalue>
-    </coffee>
-    <coffee coffeekind="liberica">
-        <coffeetype>
-            <sort>2</sort>
-            <type>PACK</type>
-        </coffeetype>
-        <coffeevalue>
-            <price>100</price>
-            <weight>100</weight>
+            <weight>2000</weight>
         </coffeevalue>
     </coffee>
 
@@ -49,10 +39,21 @@
             <type>PACK</type>
         </coffeetype>
         <coffeevalue>
-            <price>100</price>
+            <price>10</price>
             <weight>170</weight>
         </coffeevalue>
     </coffee>
+    <coffee coffeekind="liberica">
+    <coffeetype>
+        <sort>2</sort>
+        <type>PACK</type>
+    </coffeetype>
+    <coffeevalue>
+        <price>100</price>
+        <weight>1000</weight>
+    </coffeevalue>
+</coffee>
+
     <coffee coffeekind="canephore">
         <coffeetype>
             <sort>1</sort>
@@ -60,7 +61,8 @@
         </coffeetype>
         <coffeevalue>
             <price>100</price>
-            <weight>170</weight>
+            <weight>1700</weight>
         </coffeevalue>
     </coffee>
+
 </cofeeList>

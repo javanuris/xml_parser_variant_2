@@ -3,6 +3,7 @@ package main;
 import entity.AbstractCoffe;
 import parse.CoffeeDomParser;
 import parse.CoffeeParser;
+import parse.CoffeeStaxParser;
 
 import java.util.ArrayList;
 
@@ -12,7 +13,11 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         CoffeeDomParser coffeeDomParser = new CoffeeDomParser();
-        ArrayList<AbstractCoffe>list =coffeeDomParser.parserCoffe();
+        ArrayList<AbstractCoffe> list = coffeeDomParser.parserCoffe();
         System.out.println(list);
+
+        CoffeeStaxParser coffeeStaxParser = new CoffeeStaxParser();
+        ArrayList<AbstractCoffe> lists = coffeeStaxParser.parseCoffee();
+        System.out.println(lists);
     }
 }
