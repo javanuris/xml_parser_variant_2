@@ -20,12 +20,12 @@ import java.util.ArrayList;
 public class CoffeeDomParser extends CoffeeParser {
 
     public ArrayList<AbstractCoffe> parserCoffe() {
-        if (!validateXML()) {
-            throw new RuntimeException("Some problem with XML");
+        if (!validatorXML()) {
+            throw new RuntimeException(CoffeeParser.NOT_FOUND);
         }
         ArrayList<AbstractCoffe> coffeList = new ArrayList<>();
-        Document coffeeDocument = getCoffeDocument();
-        NodeList nodeList = coffeeDocument.getElementsByTagName("coffee");
+        Document coffeeDoc = getCoffeFile();
+        NodeList nodeList = coffeeDoc.getElementsByTagName("coffee");
         for (int pos = 0; pos < nodeList.getLength(); pos++) {
             Node current = nodeList.item(pos);
             coffeList.add(parseElement((Element) current));
@@ -33,11 +33,10 @@ public class CoffeeDomParser extends CoffeeParser {
         return coffeList;
     }
 
-    private Document getCoffeDocument() {
+    private Document getCoffeFile() {
         try {
-            File file = new File("src/main/resources/coffee.xml");
             DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Document doc = dBuilder.parse(file);
+            Document doc = dBuilder.parse(CoffeeParser.XML_FILE);
             return doc;
         } catch (ParserConfigurationException e) {
             e.printStackTrace();

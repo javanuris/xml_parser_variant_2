@@ -16,10 +16,10 @@ import java.util.ArrayList;
 public class CoffeeStaxParser extends CoffeeParser {
 
     private XMLStreamReader createCoffeeReader() {
-        String path = "src/main/resources/coffee.xml";
+
         XMLInputFactory factory = XMLInputFactory.newInstance();
         try {
-            XMLStreamReader coffeeReader = factory.createXMLStreamReader(new FileInputStream(path));
+            XMLStreamReader coffeeReader = factory.createXMLStreamReader(new FileInputStream(CoffeeParser.XML_FILE));
             return coffeeReader;
         } catch (XMLStreamException e) {
             e.printStackTrace();
@@ -30,7 +30,7 @@ public class CoffeeStaxParser extends CoffeeParser {
     }
 
     public ArrayList<AbstractCoffe> parseCoffee() {
-        if (!validateXML()) throw new RuntimeException("Some probloem with XML file");
+        if (!validatorXML()) throw new RuntimeException(CoffeeParser.NOT_FOUND);
         XMLStreamReader coffeeReader = createCoffeeReader();
 
         ArrayList<AbstractCoffe> coffeeParsers = new ArrayList<>();

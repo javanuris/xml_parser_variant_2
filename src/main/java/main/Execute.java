@@ -15,18 +15,22 @@ import java.util.ArrayList;
 public class Execute {
 
     public Execute() {
+
         ArrayList<AbstractCoffe> listSax = new CoffeeSaxParser().parseCoffee();
         ArrayList<AbstractCoffe> listStax = new CoffeeStaxParser().parseCoffee();
         ArrayList<AbstractCoffe> listDom = new CoffeeDomParser().parserCoffe();
+
         Shower shower = new Shower();
 
-        EqualityCompare equalityCompare = new EqualityCompare();
+        EqualityCompare equality = new EqualityCompare();
 
-        System.out.println(equalityCompare.equality(listSax , listStax));
-        System.out.println(equalityCompare.equality(listSax , listDom));
-        System.out.println(equalityCompare.equality(listDom , listStax));
+        shower.showList(equality.equality(listSax , listStax));
+        shower.showList(equality.equality(listSax , listDom));
+        shower.showList(equality.equality(listDom , listStax));
 
-      shower.showPopulateObjects(listSax ,"SAX");
+        shower.showPopulate(listSax ,"SAX");
+        shower.showPopulate(listDom ,"DOM");
+        shower.showPopulate(listStax ,"STAX");
     }
 
 

@@ -70,16 +70,14 @@ public class CoffeeSaxParser extends DefaultHandler {
     }
 
     public ArrayList<AbstractCoffe> parseCoffee() {
-        if (!CoffeeParser.validateXML()) {
-            throw new RuntimeException("Some problem with XML file");
+        if (!CoffeeParser.validatorXML()) {
+            throw new RuntimeException(CoffeeParser.NOT_FOUND);
         }
-        String path = "src/main/resources/coffee.xml";
-
         SAXParserFactory factory = SAXParserFactory.newInstance();
         try {
             SAXParser saxParser = factory.newSAXParser();
             DefaultHandler handler = new CoffeeSaxParser();
-            saxParser.parse(path, handler);
+            saxParser.parse(CoffeeParser.XML_FILE, handler);
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (SAXException e) {
