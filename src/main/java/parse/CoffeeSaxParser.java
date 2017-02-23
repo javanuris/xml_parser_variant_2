@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class CoffeeSaxParser extends DefaultHandler {
 
-    private ArrayList<AbstractCoffe> coffeeList;
+    private static ArrayList<AbstractCoffe> coffeeList = new ArrayList<>();
     private ArabicaCoffee arabicaCoffee;
     private StringBuilder dataBuffer;
 
@@ -32,20 +32,40 @@ public class CoffeeSaxParser extends DefaultHandler {
     }
 
     @Override
+    public void characters(char[] ch, int start, int length) throws SAXException {
+        dataBuffer = new StringBuilder();
+        dataBuffer.append(ch, start, length);
+    }
+
+    @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
+
         switch (qName) {
+            case "type":
+                arabicaCoffee.setCoffeeType(dataBuffer.toString());
+                break;
+            case "sort":
+                arabicaCoffee.setCoffeeSort(dataBuffer.toString());
+                break;
+            case "price":
+                arabicaCoffee.setPrice(Integer.parseInt(dataBuffer.toString()));
+                break;
+            case "weight":
+                arabicaCoffee.setWeight(Integer.parseInt(dataBuffer.toString()));
+                break;
             case "coffee":
                 coffeeList.add(arabicaCoffee);
                 break;
-            case "":
         }
+
     }
 
     public ArrayList<AbstractCoffe> parseCoffee() {
+
         if (!CoffeeParser.validateXML()) {
             throw new RuntimeException("Some problem with XML file");
         }
-        coffeeList = new ArrayList<>();
+
         String path = "src/main/resources/coffee.xml";
 
         SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -53,8 +73,6 @@ public class CoffeeSaxParser extends DefaultHandler {
             SAXParser saxParser = factory.newSAXParser();
             DefaultHandler handler = new CoffeeSaxParser();
             saxParser.parse(path, handler);
-
-
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (SAXException e) {
@@ -64,4 +82,6 @@ public class CoffeeSaxParser extends DefaultHandler {
         }
         return coffeeList;
     }
+
+
 }

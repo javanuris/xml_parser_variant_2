@@ -28,6 +28,7 @@ public class CoffeeStaxParser extends CoffeeParser {
         }
         return null;
     }
+
     public ArrayList<AbstractCoffe> parseCoffee() {
         if (!validateXML()) throw new RuntimeException("Some probloem with XML file");
         XMLStreamReader coffeeReader = createCoffeeReader();
