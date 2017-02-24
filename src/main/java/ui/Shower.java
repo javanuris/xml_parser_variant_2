@@ -20,13 +20,6 @@ public class Shower {
         System.out.println("--------------------------- \n\n");
     }
 
-    public void showList(boolean equal) {
-        if (equal) {
-            System.out.println("Обьекты равны");
-        } else {
-            System.out.println("Обьекты НЕ равны");
-        }
 
-    }
 
 }
