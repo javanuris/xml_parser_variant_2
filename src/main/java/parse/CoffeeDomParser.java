@@ -1,6 +1,7 @@
 package parse;
 
 import entity.*;
+import main.CaravanCoffee;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -18,7 +19,8 @@ import java.util.ArrayList;
  */
 public class CoffeeDomParser extends CoffeeXmlValidate {
 
-    public ArrayList<AbstractCoffe> parserCoffe() {
+    public CaravanCoffee parserCoffe() {
+        CaravanCoffee caravanCoffee = new CaravanCoffee();
         if (!validatorXML()) {
             throw new RuntimeException(CoffeeXmlValidate.NOT_FOUND);
         }
@@ -29,7 +31,8 @@ public class CoffeeDomParser extends CoffeeXmlValidate {
             Node current = nodeList.item(pos);
             coffeList.add(parseElement((Element) current));
         }
-        return coffeList;
+        caravanCoffee.setAbstractCoffes(coffeList);
+        return caravanCoffee;
     }
 
     private Document getCoffeeFile() {

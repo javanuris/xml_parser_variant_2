@@ -1,6 +1,7 @@
 package parse;
 
 import entity.*;
+import main.CaravanCoffee;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -29,7 +30,8 @@ public class CoffeeStaxParser extends CoffeeXmlValidate {
         return null;
     }
 
-    public ArrayList<AbstractCoffe> parseCoffee() {
+    public CaravanCoffee parseCoffee() {
+        CaravanCoffee caravanCoffee = new CaravanCoffee();
         if (!validatorXML()) throw new RuntimeException(CoffeeXmlValidate.NOT_FOUND);
         XMLStreamReader coffeeReader = createCoffeeReader();
 
@@ -84,7 +86,8 @@ public class CoffeeStaxParser extends CoffeeXmlValidate {
         } catch (XMLStreamException e) {
             e.printStackTrace();
         }
-        return coffeeList;
+        caravanCoffee.setAbstractCoffes(coffeeList);
+        return caravanCoffee;
     }
 
 }

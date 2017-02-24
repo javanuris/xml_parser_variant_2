@@ -1,6 +1,7 @@
 package parse;
 
 import entity.*;
+import main.CaravanCoffee;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -69,7 +70,8 @@ public class CoffeeSaxParser extends DefaultHandler {
         }
     }
 
-    public ArrayList<AbstractCoffe> parseCoffee() {
+    public CaravanCoffee parseCoffee() {
+        CaravanCoffee caravanCoffee = new CaravanCoffee();
         if (!CoffeeXmlValidate.validatorXML()) {
             throw new RuntimeException(CoffeeXmlValidate.NOT_FOUND);
         }
@@ -85,6 +87,7 @@ public class CoffeeSaxParser extends DefaultHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return coffeeList;
+        caravanCoffee.setAbstractCoffes(coffeeList);
+        return caravanCoffee;
     }
 }

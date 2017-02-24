@@ -16,21 +16,23 @@ public class Execute {
 
     public Execute() {
 
-        ArrayList<AbstractCoffe> listSax = new CoffeeSaxParser().parseCoffee();
-        ArrayList<AbstractCoffe> listStax = new CoffeeStaxParser().parseCoffee();
-        ArrayList<AbstractCoffe> listDom = new CoffeeDomParser().parserCoffe();
+        CaravanCoffee listSax = new CoffeeSaxParser().parseCoffee();
+        CaravanCoffee listStax = new CoffeeStaxParser().parseCoffee();
+        CaravanCoffee listDom = new CoffeeDomParser().parserCoffe();
 
-        Shower shower = new Shower();
+        System.out.println(listSax.equals(listDom));
+        System.out.println(listStax.equals(listDom));
+       // Shower shower = new Shower();
 
-        EqualityCompare equality = new EqualityCompare();
+        //EqualityCompare equality = new EqualityCompare();
 
-        shower.showList(equality.equality(listSax , listStax));
-        shower.showList(equality.equality(listSax , listDom));
-        shower.showList(equality.equality(listDom , listStax));
+       // shower.showList(equality.equality(listSax , listStax));
+       // shower.showList(equality.equality(listSax , listDom));
+      //  shower.showList(equality.equality(listDom , listStax));
 
-        shower.showPopulate(listSax ,"SAX");
-        shower.showPopulate(listDom ,"DOM");
-        shower.showPopulate(listStax ,"STAX");
+       // shower.showPopulate(listSax ,"SAX");
+       // shower.showPopulate(listDom ,"DOM");
+       // shower.showPopulate(listStax ,"STAX");
     }
 
 
