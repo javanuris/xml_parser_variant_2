@@ -14,7 +14,7 @@ import java.io.IOException;
  * Created by User on 23.02.2017.
  */
 
-public abstract class CoffeeParser {
+public abstract class CoffeeXmlValidate {
     public static final String XML_FILE = "src/main/resources/coffee.xml";
     public static final String XSD_FILE = "src/main/resources/temple.xsd";
     public static final String NOT_FOUND = "Some problem with XML file";

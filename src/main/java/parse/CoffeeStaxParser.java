@@ -13,13 +13,13 @@ import java.util.ArrayList;
 /**
  * Created by User on 23.02.2017.
  */
-public class CoffeeStaxParser extends CoffeeParser {
+public class CoffeeStaxParser extends CoffeeXmlValidate {
 
     private XMLStreamReader createCoffeeReader() {
 
         XMLInputFactory factory = XMLInputFactory.newInstance();
         try {
-            XMLStreamReader coffeeReader = factory.createXMLStreamReader(new FileInputStream(CoffeeParser.XML_FILE));
+            XMLStreamReader coffeeReader = factory.createXMLStreamReader(new FileInputStream(CoffeeXmlValidate.XML_FILE));
             return coffeeReader;
         } catch (XMLStreamException e) {
             e.printStackTrace();
@@ -30,10 +30,10 @@ public class CoffeeStaxParser extends CoffeeParser {
     }
 
     public ArrayList<AbstractCoffe> parseCoffee() {
-        if (!validatorXML()) throw new RuntimeException(CoffeeParser.NOT_FOUND);
+        if (!validatorXML()) throw new RuntimeException(CoffeeXmlValidate.NOT_FOUND);
         XMLStreamReader coffeeReader = createCoffeeReader();
 
-        ArrayList<AbstractCoffe> coffeeParsers = new ArrayList<>();
+        ArrayList<AbstractCoffe> coffeeList = new ArrayList<>();
         AbstractCoffe abstractCoffee = new ArabicaCoffee();
         String data = "";
         try {
@@ -75,7 +75,7 @@ public class CoffeeStaxParser extends CoffeeParser {
                                 break;
                             case "weight":
                                 abstractCoffee.setWeight(Integer.parseInt(data));
-                                coffeeParsers.add(abstractCoffee);
+                                coffeeList.add(abstractCoffee);
                                 break;
                         }
                         break;
@@ -84,7 +84,7 @@ public class CoffeeStaxParser extends CoffeeParser {
         } catch (XMLStreamException e) {
             e.printStackTrace();
         }
-        return coffeeParsers;
+        return coffeeList;
     }
 
 }

@@ -10,21 +10,20 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * Created by User on 23.02.2017.
  */
-public class CoffeeDomParser extends CoffeeParser {
+public class CoffeeDomParser extends CoffeeXmlValidate {
 
     public ArrayList<AbstractCoffe> parserCoffe() {
         if (!validatorXML()) {
-            throw new RuntimeException(CoffeeParser.NOT_FOUND);
+            throw new RuntimeException(CoffeeXmlValidate.NOT_FOUND);
         }
         ArrayList<AbstractCoffe> coffeList = new ArrayList<>();
-        Document coffeeDoc = getCoffeFile();
+        Document coffeeDoc = getCoffeeFile();
         NodeList nodeList = coffeeDoc.getElementsByTagName("coffee");
         for (int pos = 0; pos < nodeList.getLength(); pos++) {
             Node current = nodeList.item(pos);
@@ -33,10 +32,10 @@ public class CoffeeDomParser extends CoffeeParser {
         return coffeList;
     }
 
-    private Document getCoffeFile() {
+    private Document getCoffeeFile() {
         try {
-            DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Document doc = dBuilder.parse(CoffeeParser.XML_FILE);
+            DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            Document doc = docBuilder.parse(CoffeeXmlValidate.XML_FILE);
             return doc;
         } catch (ParserConfigurationException e) {
             e.printStackTrace();

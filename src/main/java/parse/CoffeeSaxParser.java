@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class CoffeeSaxParser extends DefaultHandler {
 
     private static ArrayList<AbstractCoffe> coffeeList = new ArrayList<>();
-    private AbstractCoffe arabicaCoffee;
+    private AbstractCoffe abstractCoffe;
     private StringBuilder dataBuffer;
 
     @Override
@@ -26,16 +26,16 @@ public class CoffeeSaxParser extends DefaultHandler {
             case "coffee":
                 switch (attributes.getValue(0).toString()) {
                     case "arabica":
-                        arabicaCoffee = new ArabicaCoffee();
+                        abstractCoffe = new ArabicaCoffee();
                         break;
                     case "dewevrei":
-                        arabicaCoffee = new DewevreiCoffe();
+                        abstractCoffe = new DewevreiCoffe();
                         break;
                     case "liberica":
-                        arabicaCoffee = new LibericaCoffe();
+                        abstractCoffe = new LibericaCoffe();
                         break;
                     case "canephore":
-                        arabicaCoffee = new CanephoraCoffe();
+                        abstractCoffe = new CanephoraCoffe();
                         break;
                 }
                 break;
@@ -52,32 +52,32 @@ public class CoffeeSaxParser extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         switch (qName) {
             case "type":
-                arabicaCoffee.setCoffeeType(dataBuffer.toString());
+                abstractCoffe.setCoffeeType(dataBuffer.toString());
                 break;
             case "sort":
-                arabicaCoffee.setCoffeeSort(dataBuffer.toString());
+                abstractCoffe.setCoffeeSort(dataBuffer.toString());
                 break;
             case "price":
-                arabicaCoffee.setPrice(Integer.parseInt(dataBuffer.toString()));
+                abstractCoffe.setPrice(Integer.parseInt(dataBuffer.toString()));
                 break;
             case "weight":
-                arabicaCoffee.setWeight(Integer.parseInt(dataBuffer.toString()));
+                abstractCoffe.setWeight(Integer.parseInt(dataBuffer.toString()));
                 break;
             case "coffee":
-                coffeeList.add(arabicaCoffee);
+                coffeeList.add(abstractCoffe);
                 break;
         }
     }
 
     public ArrayList<AbstractCoffe> parseCoffee() {
-        if (!CoffeeParser.validatorXML()) {
-            throw new RuntimeException(CoffeeParser.NOT_FOUND);
+        if (!CoffeeXmlValidate.validatorXML()) {
+            throw new RuntimeException(CoffeeXmlValidate.NOT_FOUND);
         }
         SAXParserFactory factory = SAXParserFactory.newInstance();
         try {
             SAXParser saxParser = factory.newSAXParser();
             DefaultHandler handler = new CoffeeSaxParser();
-            saxParser.parse(CoffeeParser.XML_FILE, handler);
+            saxParser.parse(CoffeeXmlValidate.XML_FILE, handler);
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (SAXException e) {
